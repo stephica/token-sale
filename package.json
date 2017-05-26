@@ -31,7 +31,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --no-semi --single-quote --print-width 160 --write",
+      "prettier --no-semi --single-quote --print-width 200 --write",
       "git add"
     ]
   }

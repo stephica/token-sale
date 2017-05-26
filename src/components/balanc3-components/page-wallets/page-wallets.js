@@ -4,7 +4,7 @@ import { Button, Header } from 'semantic-ui-react'
 import { getGroups } from './logic'
 import WalletCard from './wallet-card'
 import OverallCard from './overall-card'
-import { func, object } from 'prop-types'
+import { func, object, bool } from 'prop-types'
 import styled from 'styled-components'
 
 const Column = styled('div')`
@@ -30,9 +30,9 @@ const HeaderRow = styled('div')`
   justify-content: space-between;
 `
 
-const WalletPage = ({ showNewAddressModal, showNewWalletModal, data }) => {
+const WalletPage = ({ showNewAddressModal, showNewWalletModal, data, loggedIn }) => {
   const { userAddresses: addresses, userWallets: wallets } = data
-  const groups = getGroups(addresses, wallets)
+  const groups = loggedIn ? getGroups(addresses, wallets) : {}
   const hasGroups = groups && !!groups.length
   return (
     <Buffer>
@@ -65,6 +65,7 @@ const WalletPage = ({ showNewAddressModal, showNewWalletModal, data }) => {
 WalletPage.propTypes = {
   showNewAddressModal: func,
   showNewWalletModal: func,
+  loggedIn: bool,
   data: object
 }
 

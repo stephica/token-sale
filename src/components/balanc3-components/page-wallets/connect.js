@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { getUserWallets } from './reducers'
-import { getUserToken } from '../account/reducers'
+import { getUserToken, isLoggedIn } from '../account/reducers'
 import { showNewAddressModal } from '../new-address-modal/reducers'
 import { showNewWalletModal } from '../new-wallet-modal/reducers'
 import WalletPage from './page-wallets'
@@ -8,7 +8,8 @@ import { graphql, gql } from 'react-apollo'
 import { queryAddressesAndWallets } from '../../../queries'
 function mapStateToProps(state, props) {
   return {
-    _wallets: getUserWallets(state)
+    _wallets: getUserWallets(state),
+    loggedIn: isLoggedIn(state)
   }
 }
 
