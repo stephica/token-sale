@@ -1,40 +1,50 @@
 import React from 'react'
 import { string, func, bool, shape, object, arrayOf } from 'prop-types'
 import Buffer from '../balanc3-components/buffer'
-import { Input, Button } from 'semantic-ui-react'
+import { Table } from 'semantic-ui-react'
 
-const GraphQl = (
-  { search, sender, data: { loading, getBySender, refetch } }
-) => {
-  const clickhandler = e => {
-    search(e.target.previousElementSibling.value)
-    refetch()
-  };
-  const Tx = ({ sender, recipient, tokenStandard, parentTrace }) => (
-    <span>
-      <p><b>sender</b>: {sender}</p>
-      <p><b>recipient</b>: {recipient}</p>
-      <p><b>tokenStandard</b>: {tokenStandard}</p>
-      <p><b>parentTrace</b>: {parentTrace}</p>
-    </span>
+const TxTable = ({ txs = [] }) => {
+  return (
+    <Table singleLine>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>Sender</Table.HeaderCell>
+          <Table.HeaderCell>recipient</Table.HeaderCell>
+          <Table.HeaderCell>token standard</Table.HeaderCell>
+          <Table.HeaderCell>parent trace</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {txs.map((tx, i) => <Tx {...tx} key={i} />)}
+      </Table.Body>
+    </Table>)
+}
+
+const Tx = ({ sender, recipient, tokenStandard, parentTrace }) => (
+  <Table.Row>
+    <Table.Cell>{sender}</Table.Cell>
+    <Table.Cell>{recipient}</Table.Cell>
+    <Table.Cell>{ tokenStandard}</Table.Cell>
+    <Table.Cell>{ parentTrace}</Table.Cell>
+  </Table.Row>
   )
-  Tx.propTypes = {
-    recipient: string,
-    tokenStandard: string,
-    parentTrace: string
-  }
+Tx.propTypes = {
+  sender: string,
+  recipient: string,
+  tokenStandard: string,
+  parentTrace: string
+}
+
+const GraphQl = ({ search, sender, data: { loading, getBySender, refetch } }) => {
+  console.log('getBySender', getBySender)
   return (
     <Buffer>
-      <h2>GraphQl Example</h2>
-      <Input
-        fluid
-        style={{ maxWidth: '600px' }}
-        action={<Button onClick={clickhandler}> Search </Button>}
-      />
+      <h2>Value Transfer Preview</h2>
+      <p>You must "watch" this address to get more than last 50 results</p>
       <div style={{ marginTop: '20px' }}>
         {getBySender &&
-          !loading &&
-          getBySender.map((tx, i) => <Tx {...tx} key={i} />)}
+          !loading && <TxTable txs={getBySender} />
+        }
         {loading && 'loading...'}
         {getBySender &&
           !getBySender.length &&
@@ -43,7 +53,7 @@ const GraphQl = (
       </div>
     </Buffer>
   )
-};
+}
 
 GraphQl.propTypes = {
   sender: string,
