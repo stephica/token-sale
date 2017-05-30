@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Modal } from 'semantic-ui-react';
+import styled from 'styled-components'
+import { Modal } from 'semantic-ui-react'
 
 const SmallModal = styled(Modal)`
   &&&{
@@ -8,5 +8,5 @@ const SmallModal = styled(Modal)`
       margin-left: -200px; // only left to not mess with Semantic UI
     }
   }
-`;
-export default SmallModal;
+`
+export default SmallModal

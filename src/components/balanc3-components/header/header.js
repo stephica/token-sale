@@ -1,27 +1,28 @@
-import React from 'react';
-import { object, func, bool } from 'prop-types';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import Media from 'react-responsive';
-import { Logo, Avatar } from '../../balanc3-components';
-import { screenSizes } from '../../base/theme';
-import { Icon } from 'semantic-ui-react';
+import React from 'react'
+import { object, func, bool } from 'prop-types'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import Media from 'react-responsive'
+import { Logo, Avatar } from '../../balanc3-components'
+import { screenSizes } from '../../base/theme'
+import { Icon } from 'semantic-ui-react'
 
 const HeaderSpace = styled('div')`
   height: ${({ theme }) => theme.topBarHeight}px;
   display: flex;
   width: 100%;
   align-items: center;
-`;
+`
 
 const HeaderRow = styled(HeaderSpace)`
   background-color: ${({ theme }) => theme.primary};
+  box-shadow: ${props => props.theme.boxShadows.tight};
   position: fixed;
   top: 0;
   padding: 20px;
   z-index: ${props => props.theme.headerZ};
   justify-content: space-between;
-`;
+`
 
 const HeaderLink = styled(Link)`
   color: ${props => props.theme.white};
@@ -30,11 +31,11 @@ const HeaderLink = styled(Link)`
     text-decoration: none;
     color: ${props => props.theme.white};
   }
-`;
+`
 
 const Header = props => {
-  const { user, sidebarOpen, showSidebar, hideSidebar, showLoginModal } = props;
-  const isUser = !!Object.keys(user).length;
+  const { user, sidebarOpen, showSidebar, hideSidebar, showLoginModal } = props
+  const isUser = !!Object.keys(user).length
   return (
     <div>
       <HeaderSpace />
@@ -47,8 +48,7 @@ const Header = props => {
               </HeaderLink>
               {isSmall && <HeaderLink to="/account">Account</HeaderLink>}
               {/* {isSmall && <HeaderLink to="/redux">Redux</HeaderLink>} */}
-              {isSmall &&
-                <HeaderLink to="/transactions">Transactions</HeaderLink>}
+              {/*{isSmall && <HeaderLink to="/transactions">Transactions</HeaderLink>} */}
             </div>
             <div>
               <Media minWidth={screenSizes.small}>
@@ -82,15 +82,15 @@ const Header = props => {
         )}
       </Media>
     </div>
-  );
-};
+  )
+}
 
 Header.propTypes = {
   user: object,
   sidebarOpen: bool,
   showSidebar: func,
   hideSidebar: func,
-  showLoginModal: func,
-};
+  showLoginModal: func
+}
 
-export default Header;
+export default Header

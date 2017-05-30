@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReduxExample from './components/page-redux-example'
-import GraphQl from './components/page-graphql'
+import PreviewTx from './components/page-preview-tx'
 import { Route, Switch } from 'react-router-dom'
 import Home from './components/page-home'
 import Header from './components/balanc3-components/header'
@@ -27,7 +27,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/redux" component={ReduxExample} />
-          <Route exact path="/graphql" component={GraphQl} />
+          <Route path="/previewTx" component={PreviewTx} />
           <Route path="/account" component={_AccountPage} />
           <Route exact path="/terms" component={TermsPage} />
           <Route component={Home} />
