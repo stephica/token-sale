@@ -1,14 +1,14 @@
-import React from 'react';
-import { string, func, bool, shape, object, arrayOf } from 'prop-types';
-import Buffer from '../balanc3-components/buffer';
-import { Input, Button } from 'semantic-ui-react';
+import React from 'react'
+import { string, func, bool, shape, object, arrayOf } from 'prop-types'
+import Buffer from '../balanc3-components/buffer'
+import { Input, Button } from 'semantic-ui-react'
 
 const GraphQl = (
   { search, sender, data: { loading, getBySender, refetch } }
 ) => {
   const clickhandler = e => {
-    search(e.target.previousElementSibling.value);
-    refetch();
+    search(e.target.previousElementSibling.value)
+    refetch()
   };
   const Tx = ({ sender, recipient, tokenStandard, parentTrace }) => (
     <span>
@@ -17,12 +17,12 @@ const GraphQl = (
       <p><b>tokenStandard</b>: {tokenStandard}</p>
       <p><b>parentTrace</b>: {parentTrace}</p>
     </span>
-  );
+  )
   Tx.propTypes = {
     recipient: string,
     tokenStandard: string,
-    parentTrace: string,
-  };
+    parentTrace: string
+  }
   return (
     <Buffer>
       <h2>GraphQl Example</h2>
@@ -42,7 +42,7 @@ const GraphQl = (
           'No results, try searching for: 0xc7d3e431be6222543364408a94c12c0d089be305'}
       </div>
     </Buffer>
-  );
+  )
 };
 
 GraphQl.propTypes = {
@@ -57,10 +57,10 @@ GraphQl.propTypes = {
         sender: string,
         recipient: string,
         tokenStandard: string,
-        parentTrace: string,
+        parentTrace: string
       })
-    ),
-  }).isRequired,
-};
+    )
+  }).isRequired
+}
 
-export default GraphQl;
+export default GraphQl

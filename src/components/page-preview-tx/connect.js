@@ -31,9 +31,10 @@ const PreviewTxWithData = graphql(getBySenderQuery, {
   options: props => {
     return {
       variables: {
-        sender: props.sender || ''
+        sender: props.match.params.previewAddress || props.sender || ''
       }
     }
   }
 })(PreviewTx)
+
 export default connect(mapStateToProps, mapDispatchToProps)(PreviewTxWithData)

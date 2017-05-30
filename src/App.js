@@ -27,7 +27,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/redux" component={ReduxExample} />
-          <Route path="/previewTx" component={PreviewTx} />
+          <Route path="/previewTx/:previewAddress" component={PreviewTx} />
           <Route path="/account" component={_AccountPage} />
           <Route exact path="/terms" component={TermsPage} />
           <Route component={Home} />
