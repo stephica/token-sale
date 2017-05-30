@@ -13,6 +13,8 @@ export const deleteAddress = 'mutation ($data: deleteInputType!) { deleteAddress
 export const addWallet = 'mutation ($data: addWalletsInputType!) { addWallet(data: $data) { _id name } }'
 export const deleteWallet = 'mutation ($data: deleteInputType!) { deleteWallet(data: $data) }'
 
+export const valueTransfersModular = 'query ($sender: String, $whereArgs: valueTransfersWhereArgs) { valueTransfers(sender: $sender, whereArgs: $whereArgs) {sender, recipient, tokenStandard, parentTrace, date} }'
+
 export const graphCall = (query, variables, onSuccess, onError) => {
   fetch(graphqlUrl, {
     method: 'POST',
@@ -34,18 +36,3 @@ export const graphCall = (query, variables, onSuccess, onError) => {
     })
     .catch(onError)
 }
-
-fetch(graphqlUrl, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    query: 'query ($token: String) { userAuths(token: $token) {_id, name, email, createdDate, country, fiatCurrency } }',
-    variables: {
-      // token: getUserToken() || ''
-    }
-  })
-})
-  .then(res => res.json())
-  .then(res => {
-    // dispatch(userReceived(res.data.userAuths))
-  })
