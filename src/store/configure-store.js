@@ -12,7 +12,6 @@ import newAddressReducer from '../components/balanc3-components/new-address-moda
 import newWalletModalReducer from '../components/balanc3-components/new-wallet-modal/reducers'
 import editWalletModalReducer from '../components/balanc3-components/edit-wallet-modal/reducers'
 
-import graphqlLogic from '../components/page-preview-tx/logic'
 import personLogic from '../components/page-redux-example/peopleContainer/logic'
 import accountLogic from '../components/balanc3-components/account/logic'
 const networkInterface = createNetworkInterface({ uri: graphqlUrl })
@@ -20,7 +19,6 @@ export const client = new ApolloClient({ networkInterface: networkInterface })
 
 const logicMiddleware = createLogicMiddleware([
   ...personLogic,
-  ...graphqlLogic,
   ...accountLogic
 ])
 
